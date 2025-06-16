@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+matplotlib
+scipy
+gspread
+oauth2client
+PySocks
+streamlit-extras

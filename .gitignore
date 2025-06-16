@@ -1,0 +1,18 @@
+# Ignore system files
+.DS_Store
+
+# Ignore Streamlit local configs
+.streamlit/
+
+# Ignore credentials
+credentials/
+*.json
+
+# Ignore Python bytecode
+*__pycache__/
+*.pyc
+
+# VS Code / PyCharm / editor settings
+.vscode/
+.idea/
+
