@@ -17,6 +17,7 @@ import markdown as md
 ROOT            = Path(".")
 PATH_DATA       = ROOT      / "data"
 PROXY_PATH      = PATH_DATA / "proxy.txt"
+CONSIGNES_PATH  = PATH_DATA / "consignes_annotations.md"
 DATA_PATH       = PATH_DATA / "auto_agreement_checking.csv" 
 
 # ╔═══════════════════════════════════════════════════════════════════╗
@@ -27,6 +28,9 @@ DATA_PATH       = PATH_DATA / "auto_agreement_checking.csv"
 proxy       = PROXY_PATH.read_text().strip() if not st.secrets.get("on_streamlit_cloud") else None
 sheet_url   = st.secrets["sheet_url"]
 secrets     = st.secrets["gcp_service_account"]
+
+# consignes
+consignes = CONSIGNES_PATH.read_text(encoding="utf-8")
 
 # Colors 
 color_map = {
@@ -116,6 +120,7 @@ init_session(len(df_messages))
 if not st.session_state.index:
     # ───── Session config panel ──────────────────────────────────────────
     with st.expander("🔧 Configuration de session", expanded=not st.session_state.sample_indices):
+        st.markdown(consignes, unsafe_allow_html=True)
         st.session_state.pseudo = st.text_input(
             "Entrez votre pseudo (sans espaces)",
             value=st.session_state.pseudo,
