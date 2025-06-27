@@ -1,0 +1,15 @@
+name: Keep Streamlit App Alive
+
+on:
+  schedule:
+    # This cron job runs every 10 hours.
+    # Streamlit apps sleep after 12 hours of inactivity, so 10 hours is ideal.
+    - cron: '0 */10 * * *'
+  workflow_dispatch: 
+
+jobs:
+  ping_app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Streamlit App
+        run: curl -s -o /dev/null -w "%{http_code}\\n" https://mainpy-y47vsjthpurt5uiz8g82te.streamlit.app
